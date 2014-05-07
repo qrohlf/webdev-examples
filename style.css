@@ -1,0 +1,18 @@
+/*
+ * Example CSS to style the todo list. This is OPTIONAL for Lab 0,
+ * but will go a long way towards making your project look prettier.
+ */
+
+body {
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* set the font */
+	font-size: 16px; /* set the base font size. This also sets the value of a rem unit */
+	color: #425669; /* set the text color */
+}
+
+.main {
+	max-width: 700px; /* Set the maximum width of the main div */
+	margin: 4rem auto; /* Set the top and bottom margins of main to 64px and center it horizontally */
+	padding: 2rem; /* Set the internal margins (padding) of main to 32px on all sides */
+	border-radius: 5px; /* round the corners of main by 4 pixels */
+	background-color: #E8ECF0; /* set the background color of main */
+}
