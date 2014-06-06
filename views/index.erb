@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <title>Quinn's To-do List</title>
+  <link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+  <div class='main'>
+    <h1>Quinn's To-do List</h1>
+    <ul>
+      <% @tasks.each do |task, date| %>
+        <li>
+          <%= task %>
+          <% unless blank? date %> <em> - <%= date %></em><% end %>
+        </li>
+      <% end %>
+    </ul>
+    <form action='/' method='POST'>
+      <strong>New Task:</strong>
+      <input type='text' name='task' placeholder='task content' />
+      <input type='text' name='date' placeholder='due date' />
+      <input type='submit' value='Save'>
+    </form>
+   </div>
+</body>
+</html>
