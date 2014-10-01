@@ -3,3 +3,5 @@ source 'https://rubygems.org'
 gem 'sinatra', '>= 1.4.5'
 gem 'sqlite3', '>= 1.3.9'
 gem 'shotgun', '>= 0.9'
+gem "activerecord"
+gem "sinatra-activerecord", require: 'sinatra/activerecord'
