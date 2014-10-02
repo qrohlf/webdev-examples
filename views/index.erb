@@ -13,10 +13,10 @@
       <div class="col-md-6 col-md-offset-3">
         <h1>Quinn's To-do List</h1>
         <div class="list-group">
-          <% @tasks.each do |task, date| %>
+          <% @tasks.each do |task| %>
           <div class="list-group-item">
-            <%= task %>
-            <% unless blank? date %> <span class="badge"><span class="glyphicon glyphicon-calendar"></span><%= date %></span><% end %>
+            <%= task.description %>
+            <% unless blank? task.due %> <span class="badge"><span class="glyphicon glyphicon-calendar"></span><%= task.due %></span><% end %>
           </div>
           <% end %>
         </div>
