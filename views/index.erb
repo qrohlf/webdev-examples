@@ -15,6 +15,7 @@
         <div class="list-group">
           <% @tasks.each do |task| %>
           <div class="list-group-item">
+            <a href='/delete/<%= task.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
             <%= task.description %>
             <% unless blank? task.due %> <span class="badge"><span class="glyphicon glyphicon-calendar"></span><%= task.due %></span><% end %>
           </div>

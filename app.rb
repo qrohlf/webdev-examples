@@ -31,6 +31,11 @@ post '/' do
   redirect '/'
 end
 
+get '/delete/:id' do
+  TodoItem.find(params[:id]).destroy
+  redirect '/'
+end
+
 helpers do
   # you can use helpers for common tasks, like determining if a
   # variable is nil or emptystring
