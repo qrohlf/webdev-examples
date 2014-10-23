@@ -1,0 +1,16 @@
+<h2><%= @model.class %></h2>
+<dl class="dl-horizontal">
+  <% @model.attributes.to_options.each do |k, v|%>
+  <dt><%= k %></dt>
+  <dd><%= v %></dd>
+  <% end %>
+</dl>
+
+<% if @model.respond_to?("emails") %>
+  <h2>Emails:</h2>
+  <div class="list-group">
+    <% @model.emails.each do |email| %>
+      <a class="list-group-item" href="/Email/<%= email.id %>"><%= email.to_s %></a>
+    <% end %>
+  </div>
+<% end %>

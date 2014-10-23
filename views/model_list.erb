@@ -1,0 +1,5 @@
+<div class="list-group">
+  <% @list.each do |model| %>
+    <a class="list-group-item" href="/User/<%= model.id %>"><%= model.to_s %></a>
+  <% end %>
+</div>

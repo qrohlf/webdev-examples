@@ -8,7 +8,8 @@ require 'rubygems'
 require 'bundler/setup'
 # load all of the gems in the gemfile
 Bundler.require
-require './models/TodoItem'
+require './models/User'
+require './models/Email'
 
 if ENV['DATABASE_URL']
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
@@ -22,24 +23,31 @@ end
 
 
 get '/' do
-  @tasks = TodoItem.all.order(:due)
+  @list = User.all.order(:name)
   erb :index
 end
 
-post '/' do
-  TodoItem.create(description: params[:task], due: params[:date])
-  redirect '/'
+get '/Users' do
+  @list = User.all.order(:name)
+  erb :index
+end
+
+get '/Emails' do
+  @list = Email.all
+  erb :index
+end
+
+
+get '/User/:unicorn' do
+  @model = User.find(params[:unicorn])
+  erb :model
 end
 
 get '/delete/:id' do
   TodoItem.find(params[:id]).destroy
-  redirect '/'
 end
 
-helpers do
-  # you can use helpers for common tasks, like determining if a
-  # variable is nil or emptystring
-  def blank?(x)
-    x.nil? || x == ""
-  end
+get '/Email/:id' do
+  @model = Email.find(params[:id])
+  erb :model
 end
