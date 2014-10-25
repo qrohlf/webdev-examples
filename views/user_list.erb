@@ -1,0 +1,20 @@
+<h1>Users</h1>
+<div class="list-group">
+  <% @users.each do |user| %>
+  <div class="list-group-item">
+    <a href='/delete_user/<%= user.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-remove"> </span></a>
+    <a href='/<%= user.id %>'><%= user.name %></a>
+  </div>
+  <% end %>
+</div>
+<div class="panel">
+  <div class="panel-body">
+    <h4 class="list-group-item-heading">New User:</h4>
+    <form class="form-inline" action='/new_user' method='POST'>
+      <div class="form-group">
+        <input class="form-control" type='text' name='name' placeholder='username' />
+      </div>
+      <button type='submit' class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>

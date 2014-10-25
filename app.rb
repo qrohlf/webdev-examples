@@ -9,6 +9,7 @@ require 'bundler/setup'
 # load all of the gems in the gemfile
 Bundler.require
 require './models/TodoItem'
+require './models/User'
 
 if ENV['DATABASE_URL']
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
@@ -20,20 +21,38 @@ else
   )
 end
 
-
 get '/' do
-  @tasks = TodoItem.all.order(:due)
-  erb :index
+  @users = User.all.order(:name)
+  erb :user_list
 end
 
-post '/' do
-  TodoItem.create(description: params[:task], due: params[:date])
+get '/:user' do
+  @user = User.find(params[:user])
+  @tasks = @user.todo_items.order(:due)
+  erb :todo_list
+end
+
+post '/new_user' do
+  @user = User.create(params)
   redirect '/'
 end
 
-get '/delete/:id' do
-  TodoItem.find(params[:id]).destroy
+get '/delete_user/:user' do
+  User.find(params[:user]).destroy
   redirect '/'
+end
+
+post '/:user/new_item' do
+  User.find(params[:user]).todo_items.create(description: params[:task], due: params[:date])
+  redirect "/#{params[:user]}"
+end
+
+# since task ids are
+get '/delete_item/:item' do
+  @todo_item = TodoItem.find(params[:item])
+  @user = @todo_item.user
+  @todo_item.destroy
+  redirect "/#{@user.id}"
 end
 
 helpers do
