@@ -1,20 +1,17 @@
 <h1><%= @user.name %>'s To-do List</h1>
-<p>
-  <a href="/">back</a>
-</p>
 <div class="list-group">
   <% @tasks.each do |task| %>
   <div class="list-group-item">
     <a href='/delete_item/<%= task.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
     <%= task.description %>
-    <% unless blank? task.due %> <span class="badge"><span class="glyphicon glyphicon-calendar"></span><%= task.due %></span><% end %>
+    <% unless task.due.blank? %> <span class="badge"><span class="glyphicon glyphicon-calendar"></span><%= task.due %></span><% end %>
   </div>
   <% end %>
 </div>
 <div class="panel">
   <div class="panel-body">
     <h4 class="list-group-item-heading">New Task:</h4>
-    <form class="form-inline" action='/<%= @user.id %>/new_item' method='POST'>
+    <form class="form-inline" action='/new_item' method='POST'>
       <div class="form-group">
         <input class="form-control" type='text' name='task' placeholder='task content' />
       </div>
@@ -25,3 +22,7 @@
     </form>
   </div>
 </div>
+<p>
+  <a href="/logout" class="btn btn-default">logout</a>
+  <a href="/delete_user" class="btn btn-danger">delete my account</a>
+</p>
